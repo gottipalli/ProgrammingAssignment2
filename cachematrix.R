@@ -46,11 +46,19 @@ cacheSolve <- function(m, ...) {
   im
 }
 
-# Test the functions
+## Test the functions
+## Create own matrix
 m1 <-matrix(1:4,2)
 m1
 mv1 <- makeCacheMatrix(m1)
 mv1$get()
+## Get Inverse - FIRST TIME
 minv1 <- cacheSolve(mv1)
 minv1
-m1%*minv1
+## 2ND CALL GETS IT FROM CACHE
+minv2 <- cacheSolve(mv1)
+minv2
+
+## A*B = 1
+m1%*%minv1
+m1%*%minv2
